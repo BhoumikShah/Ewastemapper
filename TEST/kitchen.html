@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Appliance Recycling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    .dropdown label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button.submit-btn:hover {
+      background-color: #005f6b;
+    }
+
+    p.result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Appliance Recycling</h1>
+
+<div class="container">
+  <div class="dropdown brand">
+    <label for="brand">Select Appliance:</label>
+    <select id="brand" onchange="populateModels()">
+      <option value="">Select Appliance</option>
+      <option value="Applet">MICROWAVE OVEN</option>
+      <option value="Samsungi">BLENDER </option>
+    </select>
+  </div>
+
+  <div class="dropdown model">  <label for="model">Select Model:</label>
+    <select id="model">
+      <option value="">Select Model</option>
+    </select>
+  </div>
+
+  <button class="submit-btn" onclick="submitSelection()">Submit</button>
+
+  <p class="result" id="result"></p>
+</div>
+
+<script>
+  function populateModels() {
+    var brandSelect = document.getElementById('brand');
+    var modelSelect = document.getElementById('model');
+    var selectedBrand = brandSelect.value;
+
+    if (selectedBrand === "") {
+      modelSelect.innerHTML = '<option value="">Select Brand First</option>';
+    } else {
+      // Dummy data for demonstration
+      var models = {
+        "Applet": ["LG LMVH2031ST ","Samsung ME18HFR1ASG/AA ","Whirlpool WMC2055HZ ","KitchenAid KMMT4203M ","Panasonic NN-SN68JS "],
+        "Samsungi": ["Bajaj Platini PX 1000", "Havells Nutri-Blend", "Philips HL775","Prestige PC Mixer Grinder","Usha Pioneer"]
+        
+      };
+
+      modelSelect.innerHTML = '';
+      models[selectedBrand].forEach(function(model) {
+        var option = document.createElement('option');
+        option.value = model;
+        option.textContent = model;
+        modelSelect.appendChild(option);
+      });
+    }
+  }
+  function submitSelection() {
+  var brand = document.getElementById('brand').value;
+  var model = document.getElementById('model').value;
+  var resultText = '';
+  var points = 0; // Initialize points to 0
+
+  if (brand === "" || model === "") {
+    resultText = 'Please select both brand and model.';
+  } else {
+    // Check if model name is "iPhone 12" (case-insensitive)
+    if (model.toLowerCase() === "lg lmvh2031st ") {
+      points = 382.5;
+    } 
+    // Check if model name is "Pixel 5" (case-insensitive)
+    else if (model.toLowerCase() === "samsung me18hfr1asg/aa ") {
+      points = 363;
+    } 
+    else if (model.toLowerCase() === "whirlpool wmc2055hz ") {
+      points = 400;
+    }
+    else if (model.toLowerCase() === "panasonic nn-sn68js") {
+      points = 400;
+    }
+    else if (model.toLowerCase() === "kitchenaid kmmt4203m ") {
+      points = 653;
+    }
+    else if (model.toLowerCase() === "bajaj platini px 1000") {
+      points = 84;
+    }
+    else if (model.toLowerCase() === "havells nutri-blend") {
+      points = 60;
+    }
+    else if (model.toLowerCase() === "philips hl775") {
+      points = 70;
+    }
+    else if (model.toLowerCase() === "prestige pc mixer grinder") {
+      points = 90;
+    }
+    else if (model.toLowerCase() === "usha pioneer") {
+      points = 50;
+    }
+    
+    // Check if model name is empty
+    else if (model.trim() === "") {
+      points = 0; // For an empty model name
+    }
+
+    resultText = 'You earned ' + points + ' Rupees';
+  }
+
+  document.getElementById('result').textContent = resultText;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Appliance Recycling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    .dropdown label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button.submit-btn:hover {
+      background-color: #005f6b;
+    }
+
+    p.result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Appliance Recycling</h1>
+
+<div class="container">
+  <div class="dropdown brand">
+    <label for="brand">Select Brand:</label>
+    <select id="brand" onchange="populateModels()">
+      <option value="">Select Brand</option>
+      <option value="Apple">INVERTER / VEHICLE BATTERY - DRY</option>
+      <option value="Samsung">SCRAP PRINTER</option>
+      <option value="Google">HOME UPS INVERTER</option>
+    </select>
+  </div>
+
+  <div class="dropdown model">  <label for="model">Select Model:</label>
+    <select id="model">
+      <option value="">Select Model</option>
+    </select>
+  </div>
+
+  <button class="submit-btn" onclick="submitSelection()">Submit</button>
+
+  <p class="result" id="result"></p>
+</div>
+
+<script>
+  function populateModels() {
+    var brandSelect = document.getElementById('brand');
+    var modelSelect = document.getElementById('model');
+    var selectedBrand = brandSelect.value;
+
+    if (selectedBrand === "") {
+      modelSelect.innerHTML = '<option value="">Select Brand First</option>';
+    } else {
+      // Dummy data for demonstration
+      var models = {
+        "Apple": ["Xantrex Freedom XC Pro Pure Sine Inverter","Renogy 12 Volt DC to 110 Volt AC Pure Sine Wave Inverter","BestEK Power Pure Sine Wave Inverter","Westinghouse iGen4500 Portable Inverter Generator","Goal Zero Yeti 1000 Lithium Power Station"],
+        "Samsung": ["HP LaserJet Pro M404dn", "Brother HL-L2395DW", "Epson EcoTank ET-4800 ","Canon Pixma TR8620","Lexmark MC3426i"],
+        "Google": ["Luminous Zelio+ 1100","Sukam Inojoy+ 1200" ,"Microtek EB 1100 ","Everest Power EPCOS 1200","Genus GX 1150"]
+        
+      };
+
+      modelSelect.innerHTML = '';
+      models[selectedBrand].forEach(function(model) {
+        var option = document.createElement('option');
+        option.value = model;
+        option.textContent = model;
+        modelSelect.appendChild(option);
+      });
+    }
+  }
+  function submitSelection() {
+  var brand = document.getElementById('brand').value;
+  var model = document.getElementById('model').value;
+  var resultText = '';
+  var points = 0; // Initialize points to 0
+
+  if (brand === "" || model === "") {
+    resultText = 'Please select both brand and model.';
+  } else {
+    // Check if model name is "iPhone 12" (case-insensitive)
+    if (model.toLowerCase() === "xantrex freedom xc pro pure sine inverter") {
+      points = 412.5;
+    } 
+    // Check if model name is "Pixel 5" (case-insensitive)
+    else if (model.toLowerCase() === "renogy 12 volt dc to 110 volt ac pure sine wave inverter") {
+      points = 115;
+    } 
+    else if (model.toLowerCase() === "bestek power pure sine wave inverter") {
+      points = 187.5;
+    }
+    else if (model.toLowerCase() === "westinghouse igen4500 portable inverter generator") {
+      points = 1980;
+    }
+    else if (model.toLowerCase() === "hp laserjet pro m404dn") {
+      points = 740;
+    }
+    else if (model.toLowerCase() === "brother hl-l2395dw") {
+      points = 600;
+    }
+    else if (model.toLowerCase() === "epson ecotank et-4800") {
+      points = 855;
+    }
+    else if (model.toLowerCase() === "canon pixma tr8620") {
+      points = 675;
+    }
+    else if (model.toLowerCase() === "lexmark mc3426i") {
+      points = 1650;
+    }
+    else if (model.toLowerCase() === "luminous zelio+ 1100") {
+      points = 300;
+    }
+    else if (model.toLowerCase() === "sukam inojoy+ 1200") {
+      points = 300;
+    }
+    else if (model.toLowerCase() === "microtek eb 1100 ") {
+      points = 300;
+    }
+    else if (model.toLowerCase() === "everest power epcos 1200") {
+      points = 300;
+    }
+    else if (model.toLowerCase() === "genus gx 1150") {
+      points = 300;
+    }
+    
+    
+    // Check if model name is empty
+    else if (model.trim() === "") {
+      points = 0; // For an empty model name
+    }
+
+    resultText = 'You earned ' + points + ' points!';
+  }
+
+  document.getElementById('result').textContent = resultText;
+}
+
+</script>
+
+</body>
+</html>

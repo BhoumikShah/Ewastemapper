@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Appliance Recycling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    .dropdown label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button.submit-btn:hover {
+      background-color: #005f6b;
+    }
+
+    p.result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Appliance Recycling</h1>
+
+<div class="container">
+  <div class="dropdown brand">
+    <label for="brand">Select Brand:</label>
+    <select id="brand" onchange="populateModels()">
+      <option value="">Select Brand</option>
+      <option value="Apple2">AC 1TON</option>
+      <option value="Samsung2">AC 1.5TON</option>
+      <option value="Google3">WINDOW AC 1 TON</option>
+      <option value="Googlet4">WINDOW AC 1.5 TON</option>
+      <option value="Google5">LCD TV</option>
+      <option value="Google6">LED TV</option>
+      <option value="Google7">CRT TV </option>
+      <option value="Google8">CRT TV - (BIG SIZE)</option>
+    </select>
+  </div>
+
+  <div class="dropdown model">  <label for="model">Select Model:</label>
+    <select id="model">
+      <option value="">Select Model</option>
+    </select>
+  </div>
+
+  <button class="submit-btn" onclick="submitSelection()">Submit</button>
+
+  <p class="result" id="result"></p>
+</div>
+
+<script>
+  function populateModels() {
+    var brandSelect = document.getElementById('brand');
+    var modelSelect = document.getElementById('model');
+    var selectedBrand = brandSelect.value;
+
+    if (selectedBrand === "") {
+      modelSelect.innerHTML = '<option value="">Select Brand First</option>';
+    } else {
+      // Dummy data for demonstration
+      var models = {
+        "Apple2": ["Samsung 1.5 Ton 1 Star Split AC (AR18MC3HDTT)","Voltas 1.5 Ton 5 Star Inverter Split AC (185V SZS)"],
+        "Samsung3": ["Carrier 12K Estrella Cx 1 Ton "," LG (Weight:  34-38 kg) "],
+        "Google3": ["LG 1.5 Ton 5 Star DUAL Inverter Window AC ","Hitachi 1.5 Ton 5 Star Window Inverter AC "],
+        "Google5": ["Samsung - QN90A Neo QLED LCD TV (55-inch)","Sony - X90K  LED TV (55-inch)"],
+        "Google6": ["Samsung QN900B Neo QLED Smart TV (55 inch)","Sony X90K LED Smart TV (55 inch)"],
+        "Google7": ["Sony Trinitron KV-27FS100","Samsung SyncMaster 950p"],
+        "Google8": ["Panasonic CT-34WX55F","Toshiba 57HF81"],
+        "Googlet4": ["LG 1.5 Ton 5 Star DUAL Inverter Window AC ","Hitachi 1.5 Ton 5 Star Window Inverter AC "]
+        
+        
+      };
+
+      modelSelect.innerHTML = '';
+      models[selectedBrand].forEach(function(model) {
+        var option = document.createElement('option');
+        option.value = model;
+        option.textContent = model;
+        modelSelect.appendChild(option);
+      });
+    }
+  }
+  function submitSelection() {
+  var brand = document.getElementById('brand').value;
+  var model = document.getElementById('model').value;
+  var resultText = '';
+  var points = 0; // Initialize points to 0
+
+  if (brand === "" || model === "") {
+    resultText = 'Please select both brand and model.';
+  } else {
+    // Check if model name is "iPhone 12" (case-insensitive)
+    if (model.toLowerCase() === "lg 1 ton 5 star inverter split ac (ms-q12ynza)") {
+      points = 3000;
+    } 
+    // Check if model name is "Pixel 5" (case-insensitive)
+    else if (model.toLowerCase() === "daikin 1 ton 5-star inverter ac (ftkr)") {
+      points = 3000;
+    } 
+    else if (model.toLowerCase() === "samsung 1.5 ton 1 star split ac (ar18mc3hdtt)") {
+      points = 3500;
+    }
+    else if (model.toLowerCase() === "voltas 1.5 ton 5 star inverter split ac (185v szs)") {
+      points = 3500;
+    }
+    else if (model.toLowerCase() === " carrier 12k estrella cx 1 ton ") {
+      points = 3500;
+    }
+    else if (model.toLowerCase() === "lg (weight:  34-38 kg) ") {
+      points = 3500;
+    }
+    else if (model.toLowerCase() === "lg 1.5 ton 5 star dual inverter window ac ") {
+      points = 4000;
+    }
+    else if (model.toLowerCase() === "hitachi 1.5 ton 5 star window inverter ac ") {
+      points = 4000;
+    }
+    else if (model.toLowerCase() === "samsung - qn90a neo qled lcd tv (55-inch)") {
+      points = 590;
+    }
+    else if (model.toLowerCase() === "sony - x90k  led tv (55-inch)") {
+      points = 362;
+    }
+    else if (model.toLowerCase() === "samsung qn900b neo qled smart tv (55 inch)") {
+      points = 319.5;
+    }
+    else if (model.toLowerCase() === "ony x90k led smart tv (55 inch)") {
+      points = 262.5;
+    }
+    else if (model.toLowerCase() === "sony trinitron kv-27fs100") {
+      points = 50;
+    }
+    else if (model.toLowerCase() === "samsung syncmaster 950p") {
+      points = 50;
+    }
+    else if (model.toLowerCase() === "panasonic ct-34wx55f") {
+      points = 150;
+    }
+    else if (model.toLowerCase() === "toshiba 57hf81") {
+      points = 150;
+    }
+    
+    // Check if model name is empty
+    else if (model.trim() === "") {
+      points = 0; // For an empty model name
+    }
+
+    resultText = 'You earned ' + points + ' points!';
+  }
+
+  document.getElementById('result').textContent = resultText;
+}
+
+</script>
+
+</body>
+</html>
