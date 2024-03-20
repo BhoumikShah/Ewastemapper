@@ -1,3 +1,9 @@
+## Collaborators
+
+- [BhoumikShah](https://github.com/BhoumikShah)
+- [Jayesh-m](https://github.com/Jayesh-m)
+
+
 # Ewastemapper
 Project Overview
 
